@@ -15,12 +15,12 @@ public partial class MsBoxWindow : Window
 
     private void MsBoxWindow_Closing(object sender, WindowClosingEventArgs e)
     {
-        throw new NotImplementedException();
+        Environment.Exit(-1);
     }
 
     public async void CloseSafe()
     {
-        Environment.Exit(-1);
+        await Dispatcher.UIThread.InvokeAsync(Close);
     }
 
     public void ForceExit()
