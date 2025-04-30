@@ -67,6 +67,9 @@
             <Setter Property="Foreground" Value="#3496eb" />
         </Style>
     </UserControl.Styles>
+    <Border
+      BorderThickness="1"
+      Padding="0" Margin="0">
     <Grid Classes="MsBoxCustomContainer">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15" />
@@ -78,19 +81,41 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="15" />
             <RowDefinition Height="{Binding Path=!IsInputMultiline, Converter={StaticResource conditionalGridLengthStarConverter}}" />
-            <RowDefinition Height="15" />
+            <RowDefinition Height="0" />
             <RowDefinition Height="{Binding Path=IsInputMultiline, Converter={StaticResource conditionalGridLengthStarConverter}}" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="15" />
         </Grid.RowDefinitions>
+      <!--Icon-->
+      <Image Grid.Row="1" Grid.Column="1" MaxHeight="50" MaxWidth="50" VerticalAlignment="Top"
+             IsVisible="{Binding HasIcon}"
+             Source="{Binding ImagePath}" />
+      <Grid Grid.Row="1" Grid.Column="3" RowDefinitions="Auto,15,*,Auto" Classes="customBoxViewContent">
+        <!--Bold text-->
+        <TextBlock Grid.Row="0" Classes="header styled" Text="{Binding ContentHeader}"
+                 IsVisible="{Binding HasHeader}" />
+        <!--Content text-->
+        <TextBlock Grid.Row="2" Name="ContentTextBox" Classes="contentMessage styled"
+                 Text="{Binding ContentMessage}" IsVisible="{Binding !Markdown}" />
+        <controls:MarkdownView Grid.Row="2"
+                      Markdown="{Binding ContentMessage}"
+                      IsVisible="{Binding Markdown}" />
+
+        <!--HyperLink-->
+        <TextBlock Grid.Row="3" IsVisible="{Binding IsHyperLinkVisible }" Name="HyperLink" Classes="hyperlink"
+                   Text="{Binding HyperLinkText}"
+                   attachadProperty:HyperLinkCommand.Command="{Binding HyperLinkCommand}">
+        </TextBlock>
+
+      </Grid>
         <!--Input-->
         <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" IsVisible="{Binding IsInputVisible}" Margin="0,0,0,15">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
-          <TextBlock FontFamily="{Binding FontFamily}" IsVisible="{Binding IsInputVisible}" Text="{Binding InputLabel}" VerticalAlignment="Center" Margin="0,0,15,0" />
-          <TextBox Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding InputValue, Mode=TwoWay}" FontFamily="{Binding FontFamily}" IsVisible="{Binding IsInputVisible}"
+          <TextBlock IsVisible="{Binding IsInputVisible}" Text="{Binding InputLabel}" VerticalAlignment="Center" Margin="0,0,15,0" />
+          <TextBox Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding InputValue, Mode=TwoWay}" IsVisible="{Binding IsInputVisible}"
                    AcceptsReturn="{Binding IsInputMultiline}" />
         </Grid>
         <!--Buttons-->
@@ -122,4 +147,5 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
     </Grid>
+    </Border>
 </UserControl>

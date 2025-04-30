@@ -12,5 +12,12 @@
         Icon="{Binding WindowIconPath}"
         WindowStartupLocation="{Binding LocationOfMyWindow}"
         CanResize="{Binding CanResize}"
-        Title="{Binding ContentTitle}">
+        Title="{Binding ContentTitle}"
+        Classes="customBoxWindow"
+        Background="Transparent"
+        >
+  <Window.KeyBindings>
+    <KeyBinding Gesture="Alt+F4" Command="{Binding ForceExit}" />
+  </Window.KeyBindings>
+  
 </Window>
