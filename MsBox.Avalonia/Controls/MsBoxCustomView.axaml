@@ -15,12 +15,15 @@
              MinHeight="{Binding MinHeight}"
              MaxHeight="{Binding MaxHeight}"
              Height="{Binding Height}"
-             FontFamily="{Binding FontFamily}">
+             FontFamily="{Binding FontFamily}"
+             Classes="customBoxView"
+             >
     <UserControl.Resources>
         <converters:ConditionalGridLengthStarConverter x:Key="conditionalGridLengthStarConverter" />
     </UserControl.Resources>
     <UserControl.KeyBindings>
-        <KeyBinding Gesture="Ctrl+C" Command="{Binding Copy}" />
+        <!--<KeyBinding Gesture="Ctrl+C" Command="{Binding Copy}" />-->
+        <KeyBinding Gesture="Alt+F4" Command="{Binding ForceExit}" />
     </UserControl.KeyBindings>
     <UserControl.Styles>
         <Style Selector="TextBox.styled">
@@ -80,28 +83,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="15" />
         </Grid.RowDefinitions>
-        <!--Icon-->
-        <Image Grid.Row="1" Grid.Column="1" MaxHeight="50" MaxWidth="50" VerticalAlignment="Top"
-               IsVisible="{Binding HasIcon}"
-               Source="{Binding ImagePath}" />
-        <Grid Grid.Row="1" Grid.Column="3" RowDefinitions="Auto,15,*,Auto">
-            <!--Bold text-->
-            <TextBox Grid.Row="0" Classes="header styled" FontFamily="{Binding FontFamily}" Text="{Binding ContentHeader}"
-                     IsVisible="{Binding HasHeader}" />
-            <!--Content text-->
-            <TextBox Grid.Row="2" Name="ContentTextBox" Classes="contentMessage styled" FontFamily="{Binding FontFamily}"
-                     Text="{Binding ContentMessage}" IsVisible="{Binding !Markdown}" />
-            <controls:MarkdownView Grid.Row="2"
-                          Markdown="{Binding ContentMessage}"
-                          IsVisible="{Binding Markdown}" /> 
-
-                          <!--HyperLink-->
-            <TextBlock Grid.Row="3" IsVisible="{Binding IsHyperLinkVisible }" Name="HyperLink" Classes="hyperlink"
-                       Text="{Binding HyperLinkText}"
-                       attachadProperty:HyperLinkCommand.Command="{Binding HyperLinkCommand}">
-            </TextBlock>
-
-        </Grid>
         <!--Input-->
         <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" IsVisible="{Binding IsInputVisible}" Margin="0,0,0,15">
           <Grid.ColumnDefinitions>
