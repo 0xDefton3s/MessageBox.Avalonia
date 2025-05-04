@@ -95,8 +95,8 @@
         <TextBlock Grid.Row="0" Classes="header styled" Text="{Binding ContentHeader}"
                  IsVisible="{Binding HasHeader}" />
         <!--Content text-->
-        <TextBlock Grid.Row="2" Name="ContentTextBox" Classes="contentMessage styled"
-                 Text="{Binding ContentMessage}" IsVisible="{Binding !Markdown}" />
+        <SelectableTextBlock Grid.Row="2" Name="ContentTextBox" Classes="contentMessage styled"
+                 Text="{Binding ContentMessage}" IsVisible="{Binding !Markdown}" TextWrapping="WrapWithOverflow" />
         <controls:MarkdownView Grid.Row="2"
                       Markdown="{Binding ContentMessage}"
                       IsVisible="{Binding Markdown}" />
