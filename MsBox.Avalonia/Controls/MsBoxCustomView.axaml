@@ -17,6 +17,8 @@
              Height="{Binding Height}"
              FontFamily="{Binding FontFamily}"
              Classes="customBoxView"
+             BorderBrush="Transparent"
+             BorderThickness="0"
              >
     <UserControl.Resources>
         <converters:ConditionalGridLengthStarConverter x:Key="conditionalGridLengthStarConverter" />
@@ -67,9 +69,6 @@
             <Setter Property="Foreground" Value="#3496eb" />
         </Style>
     </UserControl.Styles>
-    <Border
-      BorderThickness="1"
-      Padding="0" Margin="0">
     <Grid Classes="MsBoxCustomContainer">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15" />
@@ -147,5 +146,4 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
     </Grid>
-    </Border>
 </UserControl>

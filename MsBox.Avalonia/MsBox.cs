@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Media;
 
 using DialogHostAvalonia;
 
@@ -118,7 +119,15 @@ public class MsBox<V, VM, T> : IMsBox<T> where V : UserControl, IFullApi<T>, ISe
         var parentContent = owner.Content;
         var dh = new DialogHost
         {
-            Identifier = "MsBoxIdentifier" + Guid.NewGuid()
+            Identifier = "MsBoxIdentifier" + Guid.NewGuid(),
+            CornerRadius = new CornerRadius(20),
+            Background=new SolidColorBrush(Colors.Transparent),
+            BorderBrush = new SolidColorBrush(Colors.Transparent),
+            BorderThickness=new Thickness(0),
+            Padding=new Thickness(0),
+            Margin=new Thickness(0),
+            Effect=null,
+            DialogMargin=new Thickness(0),
         };
         _viewModel.SetFullApi(_view);
         owner.Content = null;
